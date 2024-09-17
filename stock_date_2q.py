@@ -164,7 +164,7 @@ def extract_date(driver, text):
 #check which date to use and return that date
 def select_date(date1, date2):
 
-    #if any of the dates are null return the other one of manual
+    #if any of the dates are null return the other one or manual
     if date1 == None and date2 == None:
         return 'MANUAL'
     elif date1 == None:
