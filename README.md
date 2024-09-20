@@ -95,7 +95,7 @@ The tool automates the extraction of stock earnings dates, a task that previousl
   * **Utilize webscraping and Excel manipulation** to streamline data processing and analysis.
   * **Apply robust error handling and logging**, supported by thorough testing, to address edge cases and ensure accuracy and reliability.
   * **Work with regular expressions** to parse and extract complex data patterns.
-  * **Independantly learn and apply new skills** outside of formal instruction (e.g., Selenium for browser automation).
+  * **Independently learn and apply new skills** outside of formal instruction (e.g., Selenium for browser automation).
   * **Design and implement decision-making logic** based on dynamic conditions (e.g., selecting the most relevant date).
   * **Write clean, modular, and maintainable code** by organizing functionality into reusable functions and adhering to best practices.
   * **Ensure scalability**, allowing the project to handle larger datasets or adapt to new use cases with minimal modifications.
