@@ -56,13 +56,12 @@ The tool automates the extraction of stock earnings dates, a task that previousl
        * Line 44: Set the filename to the desired name for the updated file.
   
   2. Run the script using your chosen method.
-
-   **The script will:**
+     **The script will:**
        * Extract stock symbols from the provided Excel file.
        * Scrape earnings dates from Zacks.com.
        * Update the Excel file with the earnings dates in the specified columns.
        
-  3. **Review the output file:**
+  4. **Review the output file:**
        * The updated file will be saved in the same directory under the specified name. Dates will be marked in purple, and any errors will be highlighted with a red fill. To prevent overwriting on future runs, save the reviewed file under a different name.
 
 ## Code Overview
