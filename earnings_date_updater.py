@@ -21,9 +21,8 @@ def main():
     #load excel sheet
     try:
         workbook = load_workbook(filename = 'test_stocks.xlsx')
-        print('workbook opened')
     except Exception as e:
-        print(f'didnt open: {e}')
+        print(f'Unable to open: {e}')
         exit()
     
     #defines sheet as the open excel file
