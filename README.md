@@ -30,26 +30,39 @@ The tool automates the extraction of stock earnings dates, a task that previousl
   * Inserts the selected date into the Excel file and applies custom formatting to highlight changes for easy review.
 
 ## Installation
+**Requires:**
+  * Python
+  * openpyxl
+  * Selenium
+  * GeckoDriver
+
+**Instructions:**
+1. Download .py file
+2. Place the .py file in the location of the Excel file to be interacted with.
+3. Open in Idle and alter the lines specified in **Usage**
+4. Run the File either in IDLE, in the terminal, or by double clicking the .py file.
 
 ## Usage
 
   1. **Prepare an Excel sheet with stock symbols:** Ensure that the following items are configured correctly:
        * Line 23: Set the filename to match the name of the Excel file containing the stock symbols.
-       * Line 35: Update `stockcella` to the column from which the first stock symbol will be read.
-       * Line 36: Update `datecella` to the column where the earnings date for stockcella will be inserted.
-       * Line 38: Update `stockcellb` to the column from which the second stock symbol will be read.
-       * Line 39: Update `datecellb` to the column where the earnings date for stockcellb will be inserted.
-       * Line 45: Set the filename to the desired name for the updated file.
+       * Line 34: Update `stockcella` to the column from which the first stock symbol will be read.
+       * Line 35: Update `datecella` to the column where the earnings date for stockcella will be inserted.
+       * Line 37: Update `stockcellb` to the column from which the second stock symbol will be read.
+       * Line 38: Update `datecellb` to the column where the earnings date for stockcellb will be inserted.
+       * Line 44: Set the filename to the desired name for the updated file.
        
   2. **Run the script:**
        ```Python earnings_date_updater.py```
+     or
+     Double click on the .py file
 
-  3. **The script will:**
+  4. **The script will:**
        * Extract stock symbols from the provided Excel file.
        * Scrape earnings dates from Zacks.com.
        * Update the Excel file with the earnings dates in the specified columns.
        
-  4. **Review the output file:**
+  5. **Review the output file:**
        * The updated file will be saved in the same directory under the specified name. Review the changes where dates are marked with purple text and errors are highlighted with a red fill. To avoid overwriting issues in future runs, save the reviewed file under a different name.
 
 ## Code Overview
