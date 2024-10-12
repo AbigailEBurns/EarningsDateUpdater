@@ -29,7 +29,7 @@ def main():
     sheet = workbook.active
 
     #iterate row by row through the sheet 
-    for row in range(2, 12):
+    for row in sheet.iter_rows(min_row = 3):
         #alternate between a and b columns and save the stock symbol as a variable for each:
         stockcella = 'A'
         datecella = 'C' 
