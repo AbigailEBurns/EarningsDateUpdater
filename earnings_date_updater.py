@@ -41,8 +41,10 @@ def main():
         search_stock(sheet, stockcella, datecella, row)
 
         search_stock(sheet, stockcellb, datecellb, row)
-
-    workbook.save('test_stocksa.xlsx')
+    try:
+        workbook.save('test_stocksa.xlsx')
+    except Exception as e:
+        print(f'Failed to save workbook: {e}')
 
 def search_stock(sheet, stockcell, datecell, row):
 
@@ -108,6 +110,7 @@ def scrape(stock):
 def set_webdriver():
     
     options = webdriver.FirefoxOptions()
+    options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
     options.add_argument('-headless') #headless mode
 
     #user agent to mimic regular browser
@@ -119,7 +122,7 @@ def set_webdriver():
     options.set_preference('useAutomationExtension', False)
 
     #set path to webdriver service
-    service = webdriver.FirefoxService('/usr/local/bin/geckodriver')
+    service = webdriver.FirefoxService(r'C:\Program Files (x84)\WebDrivers\geckodriver.exe')
 
     #initialize driver
     driver = webdriver.Firefox(service=service, options=options)
@@ -146,7 +149,7 @@ def get_date(driver, date_path):
 
     #call the extract date function to seperate the date from the rest of the text
     date = extract_date(driver, text)
-
+    
     return date
 
 #seperate a date from other text
@@ -158,14 +161,17 @@ def extract_date(driver, text):
     #search for the pattern in the text objects text
     date = re.search(date_pattern, text.text)
 
-    #.group() ensures it is returned as a string and not an object
-    return date.group()
+    if date:
+        #.group() ensures it is returned as a string and not an object
+        return date.group()
+    else:
+        return None
 
 #check which date to use and return that date
 def select_date(date1, date2):
 
     #if any of the dates are null return the other one or manual
-    if date1 == None and date2 == None:
+    if date1 == None and (date2 == None or last_30(date2) == False):
         return 'MANUAL'
     elif date1 == None:
         return convert_date(date2)
