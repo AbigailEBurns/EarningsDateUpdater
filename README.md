@@ -1,5 +1,5 @@
 # EarningsDateUpdater
-EarningsDateUpdater is a Python tool designed to automate the retrieval of stock symbols from an Excel sheet, scrape earnings dates from a financial website, and update the sheet with the corresponding information. This project showcases proficiency in web scraping with Selenium, Excel file manipulation in Python using openpyxl, and the automation of repetitive data extraction workflows.
+EarningsDateUpdater is a Python tool designed to automate the retrieval of pairs of stock symbols from an Excel sheet, scrape earnings dates from a financial website, and update the sheet with the corresponding information. This project showcases proficiency in web scraping with Selenium, Excel file manipulation in Python using openpyxl, and the automation of repetitive data extraction workflows.
 
 By reducing manual effort, this tool improves efficiency, accuracy, and scalability, making it a valuable asset for financial analysts or professionals working with stock earnings data.
 
