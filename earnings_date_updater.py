@@ -74,6 +74,10 @@ def stock_process(stock):
     #call scraping function, pass symbol
     date1, date2 = scrape(stock)
 
+    #if scrape fails to load page or elements on page
+    if date1 == 'LOAD ERROR' or date2 == 'LOAD ERROR':
+        return 'LOAD ERROR'
+    
     #call fucntion to select which date will be passes to excel, pass dates from scraping
     sdate = select_date(date1, date2)
     
