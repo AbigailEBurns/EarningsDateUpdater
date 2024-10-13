@@ -47,21 +47,26 @@ The tool automates the extraction of stock earnings dates, a task that previousl
 
 ## Usage
 
-  1. **Prepare an Excel sheet with stock symbols:** Ensure that the following items are configured correctly:
+  1. **Prepare an Excel sheet with stock symbols:**
+  2. **Ensure that the following items are configured correctly in the script:**
        * Line 23: Set the filename to match the name of the Excel file containing the stock symbols.
+       * Line 32: Specify the starting row for processing by updating the number in `(min_row = 3)`.
        * Line 34: Update `stockcella` to the column from which the first stock symbol will be read.
        * Line 35: Update `datecella` to the column where the earnings date for `stockcella` will be inserted.
        * Line 37: Update `stockcellb` to the column from which the second stock symbol will be read.
        * Line 38: Update `datecellb` to the column where the earnings date for `stockcellb` will be inserted.
        * Line 44: Set the filename to the desired name for the updated file.
+       * Line 116: Ensure the path to `firefox.exe` is correct.
+       * Line 128: Ensure the path to `GeckoDriver` is correct.
   
-  2. Run the script using your chosen method.
+  3. Run the script using your chosen method.
+
      **The script will:**
        * Extract stock symbols from the provided Excel file.
        * Scrape earnings dates from Zacks.com.
        * Update the Excel file with the earnings dates in the specified columns.
        
-  4. **Review the output file:**
+  5. **Review the output file:**
        * The updated file will be saved in the same directory under the specified name. Dates will be marked in purple, and any errors will be highlighted with a red fill. To prevent overwriting on future runs, save the reviewed file under a different name.
 
 ## Code Overview
