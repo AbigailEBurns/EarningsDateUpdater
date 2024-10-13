@@ -30,6 +30,9 @@ def main():
 
     #iterate row by row through the sheet 
     for row in sheet.iter_rows(min_row = 3):
+
+        row_num = row[0].row
+        
         #alternate between a and b columns and save the stock symbol as a variable for each:
         stockcella = 'A'
         datecella = 'C' 
@@ -37,7 +40,7 @@ def main():
         stockcellb = 'B'
         datecellb = 'D'
 
-        search_stock(sheet, stockcella, datecella, row)
+        search_stock(sheet, stockcella, datecella, row_num)
 
         search_stock(sheet, stockcellb, datecellb, row)
     try:
