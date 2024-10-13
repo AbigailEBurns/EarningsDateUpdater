@@ -28,9 +28,10 @@ def main():
     #defines sheet as the open excel file
     sheet = workbook.active
 
-    #iterate row by row through the sheet 
+    #iterate row by row through the sheet starting at the third row
     for row in sheet.iter_rows(min_row = 3):
-
+        
+        #get the row number from the first cell
         row_num = row[0].row
         
         #alternate between a and b columns and save the stock symbol as a variable for each:
@@ -42,7 +43,7 @@ def main():
 
         search_stock(sheet, stockcella, datecella, row_num)
 
-        search_stock(sheet, stockcellb, datecellb, row)
+        search_stock(sheet, stockcellb, datecellb, row_num)
     try:
         workbook.save('test_stocksa.xlsx')
     except Exception as e:
