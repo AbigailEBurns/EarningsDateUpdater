@@ -35,39 +35,35 @@ def main():
         row_num = row[0].row
         
         #alternate between a and b columns and save the stock symbol as a variable for each:
-        stockcella = 'A'
-        datecella = 'C' 
+        stock_cellA = 'A'
+        date_cellA = 'C' 
 
-        stockcellb = 'B'
-        datecellb = 'D'
+        stock_cellB = 'B'
+        date_cellB = 'D'
 
-        search_stock(sheet, stockcella, datecella, row_num)
+        search_stock(sheet, stock_cellA, date_cellA, row_num)
 
-        search_stock(sheet, stockcellb, datecellb, row_num)
+        search_stock(sheet, stock_cellB, date_cellB, row_num)
     try:
         workbook.save('test_stocksa.xlsx')
     except Exception as e:
         print(f'Failed to save workbook: {e}')
 
-def search_stock(sheet, stockcell, datecell, row):
+def search_stock(sheet, stock_cell, date_cell, row):
 
     #get the name of the stock
-    stock = sheet[f'{stockcell}{row}'].value
+    stock = sheet[f'{stock_cell}{row}'].value
     
     #check if the date cell is empty
-    if sheet[f'{datecell}{row}'].value == None:
+    if sheet[f'{date_cell}{row}'].value is None:
         #proceed with the process
-        sdate = stock_process(stock)
+        stock_date = stock_process(stock)
 
         #insert selected date into excel
-        sheet[f'{datecell}{row}'] = sdate
+        sheet[f'{date_cell}{row}'] = stock_date
 
         #determine what style needs to be applied to the cell and apply it
-        apply_style(sdate, sheet[f'{datecell}{row}'])
-
-    #if the cell isnt empty continue to the next stock
-    else:
-        pass
+        apply_style(stock_date, sheet[f'{date_cell}{row}'])
 
 def stock_process(stock):
     
@@ -79,9 +75,9 @@ def stock_process(stock):
         return 'LOAD ERROR'
     
     #call fucntion to select which date will be passes to excel, pass dates from scraping
-    sdate = select_date(date1, date2)
+    stock_date = select_date(date1, date2)
     
-    return sdate
+    return stock_date
 
 #function for scraping
 def scrape(stock):
@@ -178,18 +174,23 @@ def extract_date(driver, text):
 def select_date(date1, date2):
 
     #if any of the dates are null return the other one or manual
-    if date1 == None and (date2 == None or last_30(date2) == False):
+    if date1 is None and (date2 is None or not last_30(date2)):
         return 'MANUAL'
-    elif date1 == None:
-        return convert_date(date2)
-    elif date2 == None:
-        return convert_date(date1)
+    elif date1 is None:
+        result = convert_date(date2)
+    elif date2 is None:
+        result = convert_date(date1)
     #elif bottom date is in the last 30 days then bottom date
     elif last_30(date2):
-        return convert_date(date2)
+        result = convert_date(date2)
     #else top date
     else:
-        return convert_date(date1)
+        result = convert_date(date1)
+
+    if result is None:
+        return 'MANUAL'
+
+    return result
 
 #convert string to date object
 def convert_date(date):
@@ -201,19 +202,22 @@ def convert_date(date):
     for format in formats:
         try:
             #try the date with a format
-            form_date = datetime.strptime(date, format).date()
+            return datetime.strptime(date, format).date()
 
         except ValueError:
             #if it doesnt work, try it with the next format
             continue
 
-    return form_date
+    return None
 
 #calculate if a date was within the last 30 days
 def last_30(date):
 
     #convert to a date object
-    fdate = convert_date(date)
+    date_object = convert_date(date)
+
+    if date_object is None:
+        return False
 
     #calculate today
     today = datetime.today().date()
@@ -222,19 +226,20 @@ def last_30(date):
     last30 = today - timedelta(days=30)
 
     #if the passed date is within today and 30 days ago, return true
-    return last30 <= fdate <= today
+    return last30 <= date_object <= today
 
 def apply_style(date, cell):
 
-    redfill = PatternFill(start_color = 'FF0000', end_color = 'FF0000', fill_type = 'solid')
-    purpletext = Font(color = '800080')
+    red_fill = PatternFill(start_color = 'FF0000', end_color = 'FF0000', fill_type = 'solid')
+    purple_text = Font(color = '800080')
     
     if date == 'MANUAL' or date == 'LOAD ERROR':
-        cell.fill = redfill    
+        cell.fill = red_fill    
     else:
-        cell.font = purpletext
+        cell.font = purple_text
 
-main()
+if __name__ == "__main__":
+    main()
 
 #profit
     
