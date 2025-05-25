@@ -52,9 +52,9 @@ The tool automates the extraction of stock earnings dates, a task that previousl
        * Line 23: Set the filename to match the name of the Excel file containing the stock symbols.
        * Line 32: Specify the starting row for processing by updating the number in `(min_row = 3)`.
        * Line 34: Update `stock_cellA` to the column from which the first stock symbol will be read.
-       * Line 35: Update `date_cellA` to the column where the earnings date for `stockcella` will be inserted.
+       * Line 35: Update `date_cellA` to the column where the earnings date for `stock_cellA` will be inserted.
        * Line 37: Update `stock_cellB` to the column from which the second stock symbol will be read.
-       * Line 38: Update `date_cellB` to the column where the earnings date for `stockcellb` will be inserted.
+       * Line 38: Update `date_cellB` to the column where the earnings date for `stock_cellB` will be inserted.
        * Line 44: Set the filename to the desired name for the updated file.
        * Line 116: Ensure the path to `firefox.exe` is correct.
        * Line 128: Ensure the path to `GeckoDriver` is correct.
